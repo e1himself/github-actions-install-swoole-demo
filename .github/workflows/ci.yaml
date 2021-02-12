@@ -1,0 +1,21 @@
+on: push
+name: Test
+jobs:
+  test:
+    name:    Test Swoole Installation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.1', '7.2', '7.3', '7.4']
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup PHP & extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions:  swoole
+          coverage:    none
+
+
